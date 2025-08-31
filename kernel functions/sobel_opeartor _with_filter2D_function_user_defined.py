@@ -18,7 +18,7 @@ def my_filter2D(img,kernel):
 	k_h,k_w = kernel.shape
 	pad_h, pad_w = k_h//2,k_w//2
 	
-	padded = np.pad(img,((pad_h,pad_h),(pad_w,pad_w)),mode="constant")
+	padded = np.pad(img,((pad_h,pad_h),(pad_w,pad_w)),mode="reflect")
 	output = np.zeros_like(img)
 	
 	for i in range(img.shape[0]):
