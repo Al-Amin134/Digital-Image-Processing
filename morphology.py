@@ -101,8 +101,8 @@ def manual_black_hat(img, kernel):
 
 #Main Function					
 def main():				
-	img = cv2.imread("/home/alamin/1.PART_IV/DIP/images/morphological_image_neg.png",0)
-	img = np.where(img>127,1,0).astype(np.uint8)
+	img = cv2.imread("/home/alamin/1.PART_IV/DIP/images/morphology_tail.png",0)
+	img = np.where(img>127.0,1,0).astype(np.uint8)
 	
 	operations = ['erosion','dilation','opening','closing','top_hat','black_hat']
 	kernel = {
@@ -117,17 +117,17 @@ def main():
 		title_set = ['Original Image']
 		for k_name, k in kernel.items():
 			if op=='erosion':
-				img1 =  (cv2.erode(img, k,iterations=3))
+				img1 =  (cv2.erode(img, k,iterations=1))
 			elif op=='dilation':
-				img1 =  (cv2.dilate(img, k,iterations=3))
+				img1 =  (cv2.dilate(img, k,iterations=1))
 			elif op=='opening':
-				img1 = (cv2.morphologyEx(img, cv2.MORPH_OPEN, k,iterations=3))*255.0
+				img1 = (cv2.morphologyEx(img, cv2.MORPH_OPEN, k,iterations=1))*255.0
 			elif op=='closing':
-				img1 = (cv2.morphologyEx(img, cv2.MORPH_CLOSE, k,iterations=3))*255.0
+				img1 = (cv2.morphologyEx(img, cv2.MORPH_CLOSE, k,iterations=1))*255.0
 			elif op=='top_hat':
-				img1 = (cv2.morphologyEx(img, cv2.MORPH_TOPHAT, k,iterations=3))*255.0
+				img1 = (cv2.morphologyEx(img, cv2.MORPH_TOPHAT, k,iterations=1))*255.0
 			elif op=='black_hat':
-				img1 = (cv2.morphologyEx(img, cv2.MORPH_BLACKHAT, k,iterations=3))*255.0
+				img1 = (cv2.morphologyEx(img, cv2.MORPH_BLACKHAT, k,iterations=1))*255.0
 			img_set.append(img1)
 			title_set.append(f'{op} {k_name}(built in )')
 		for k_name, k in kernel.items():
@@ -152,4 +152,3 @@ def main():
 	
 if __name__ == "__main__":
 	main()
-
